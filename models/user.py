@@ -10,7 +10,7 @@ class User(db.Model):
     last_name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
-    bio = db.Column(db.Varchar(255))
+    bio = db.Column(db.Text)
     country = db.Column(db.String)
     is_admin = db.Column(db.Boolean, default=False)
 

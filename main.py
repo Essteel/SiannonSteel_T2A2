@@ -1,6 +1,8 @@
 from init import db, ma, bcrypt, jwt
 import os
-from controllers.teams_controller import teams_bp
+from controllers.teams import teams_bp
+from controllers.users import users_bp
+from controllers.cli_commands import db_commands
 
 from flask import Flask
 
@@ -17,5 +19,7 @@ def create_app():
     jwt.init_app(app)
 
     app.register_blueprint(teams_bp)
+    app.register_blueprint(users_bp)
+    app.register_blueprint(db_commands)
 
     return app
