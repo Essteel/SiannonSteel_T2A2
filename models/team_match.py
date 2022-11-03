@@ -11,3 +11,7 @@ class TeamMatch(db.Model):
 
     team = db.relationship('Team', back_populates='team_matches')
     match = db.relationship('Match', back_populates='team_matches')
+
+class TeamMatchSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'score', 'team_id', 'match_id', 'team', 'match')
