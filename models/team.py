@@ -9,6 +9,8 @@ class Team(db.Model):
     total_drawn = db.Column(db.Integer, default=0)
     total_lost = db.Column(db.Integer, default=0)
 
+    users = db.relationship('User', back_populates='team')
+
 class TeamSchema(ma.Schema):
     class Meta:
         fields = ('id', 'team_name', 'total_won', 'total_drawn', 'total_lost')
