@@ -128,3 +128,67 @@ def seed_db():
     ]
     db.session.add_all(users)
     db.session.commit()
+    
+    matches = [
+        Match(
+            date = '2022-12-01',
+            time = '14:00:00'
+        ),
+        Match(
+            date = '2022-12-01',
+            time = '17:00:00'
+        ),
+        Match(
+            date = '2022-12-04',
+            time = '14:00:00'
+        ),
+        Match(
+            date = '2022-12-04',
+            time = '17:00:00'
+        ),
+        Match(
+            date = '2022-12-07',
+            time = '17:00:00'
+        ),
+        Match(
+            date = '2022-12-07',
+            time = '17:00:00'
+        )
+    ]
+    db.session.add_all(matches)
+    db.session.commit()
+
+    team_matches = [
+        TeamMatch(
+            score = 24,
+            team_id = 3,
+            match_id = 0
+        ),
+        TeamMatch(
+            score = 17,
+            team_id = 8,
+            match_id = 0
+        ),
+        TeamMatch(
+            score = 28,
+            team_id = 1,
+            match_id = 1
+        ),
+        TeamMatch(
+            score = 36,
+            team_id = 3,
+            match_id = 1
+        ),
+        TeamMatch(
+            team_id = 1,
+            match_id = 2
+        ),
+        TeamMatch(
+            team_id = 8,
+            match_id = 2
+        )
+    ]
+    db.session.add_all(team_matches)
+    db.session.commit()
+
+    print('All tables seeded successfully.')
