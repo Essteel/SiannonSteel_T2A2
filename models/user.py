@@ -19,7 +19,7 @@ class User(db.Model):
     team = db.relationship('Team', back_populates='users')
 
 class UserSchema(ma.Schema):
-    team = fields.Nested('TeamSchema', only=['team_name'])
+    team = fields.Nested('TeamSchema', only=['name'])
     class Meta:
         fields = ('id', 'first_name', 'last_name', 'email', 'password', 'bio', 'country', 'is_admin')
         ordered = True

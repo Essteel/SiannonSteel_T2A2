@@ -10,6 +10,7 @@ db_commands = Blueprint('db', __name__)
 
 @db_commands.cli.command('create')
 def create_db():
+    db.create_all()
     print('Tables created successfully.')
 
 @db_commands.cli.command('drop')
@@ -21,34 +22,34 @@ def drop_db():
 def seed_db():
     teams = [
         Team(
-            team_name = 'Team Icicle'
+            name = 'Team Icicle'
         ),
         Team(
-            team_name = 'Meteoroids'
+            name = 'Meteoroids'
         ),
         Team(
-            team_name = 'Team Angular'
+            name = 'Team Angular'
         ),
         Team(
-            team_name = 'Purple Kangaroo'
+            name = 'Purple Kangaroo'
         ),
         Team(
-            team_name = 'Team Elevate'
+            name = 'Team Elevate'
         ),
         Team(
-            team_name = 'Project Y'
+            name = 'Project Y'
         ),
         Team(
-            team_name = 'Team Side Effect'
+            name = 'Team Side Effect'
         ),
         Team(
-            team_name = 'Team Victoria'
+            name = 'Team Victoria'
         ),
         Team(
-            team_name = 'Frost Trolls'
+            name = 'Frost Trolls'
         ),
         Team(
-            team_name = 'Balance Team'
+            name = 'Balance Team'
         )
     ]
     db.session.add_all(teams)
