@@ -1,5 +1,6 @@
 from init import db
 from models.team_match import TeamMatch, TeamMatchSchema
+from controllers.auth import authorize
 
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
@@ -10,7 +11,7 @@ team_matches_bp = Blueprint('team_matches', __name__, url_prefix='/team_matches'
 @team_matches_bp.route('/', methods=['POST'])
 @jwt_required
 def create_one_team_match():
-    # authorize()
+    authorize()
     team_match = TeamMatch(
         score = request.json['score'],
         team_id = request.json['team_id'],
@@ -40,7 +41,7 @@ def get_all_team_matches(id):
 @team_matches_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
 @jwt_required
 def update_one_team_match(id):
-    # authorize()
+    authorize()
     stmt = db.select(TeamMatch).filter_by(id=id)
     team_match = db.session.scalar(stmt)
     if team_match:
@@ -56,7 +57,7 @@ def update_one_team_match(id):
 @team_matches_bp.route('/', methods=['DELETE'])
 @jwt_required
 def delete_one_team_match(id):
-    # authorize()
+    authorize()
     stmt = db.select(TeamMatch).filter_by(id=id)
     team_match = db.session.scalar(stmt)
     if team_match:

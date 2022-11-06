@@ -1,5 +1,6 @@
 from init import db, bcrypt
 from models.user import User, UserSchema
+from controllers.auth import authorize
 
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
@@ -10,7 +11,7 @@ users_bp = Blueprint('users', __name__, url_prefix='/users')
 @users_bp.route('/', methods=['POST'])
 @jwt_required
 def create_one_user():
-    # authorize()
+    authorize()
     user = User(
         first_name = request.json['first_name'],
         last_name = request.json['last_name'],
@@ -25,7 +26,7 @@ def create_one_user():
 @users_bp.route('/<int:id>')
 @jwt_required
 def get_one_user(id):
-    # authorize()
+    authorize()
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
     if user:
@@ -36,16 +37,16 @@ def get_one_user(id):
 @users_bp.route('/')
 @jwt_required()
 def get_all_users():
-    # authorize()
+    authorize()
     stmt = db.select(User).order_by(User.id)
     users = db.session.scalars(stmt)
     return UserSchema(exclude=['password'], many=True).dump(users)
 
 # UPDATE
-@users_bp.route('/<int:id>')
+@users_bp.route('/<int:id>/')
 @jwt_required()
 def update_one_user(id):
-    # authorize()
+    authorize()
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
     if user:
@@ -64,10 +65,10 @@ def update_one_user(id):
         return {'error': f'User not found with id {id}'}, 404
 
 # DELETE
-@users_bp.route('/<int:id>')
+@users_bp.route('/<int:id>/')
 @jwt_required()
 def delete_one_user(id):
-    # authorize()
+    authorize()
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
     if user:

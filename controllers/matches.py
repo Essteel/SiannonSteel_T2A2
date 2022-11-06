@@ -1,5 +1,6 @@
 from init import db
 from models.match import Match, MatchSchema
+from controllers.auth import authorize
 
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
@@ -10,7 +11,7 @@ matches_bp = Blueprint('matches', __name__, url_prefix='/matches')
 @matches_bp.route('/', methods=['POST'])
 @jwt_required
 def create_one_match():
-    # authorize()
+    authorize()
     match = Match(
         date = request.json['date'],
         time = request.json['time']
@@ -39,7 +40,7 @@ def get_all_matches(id):
 @matches_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
 @jwt_required
 def update_one_match(id):
-    # authorize()
+    authorize()
     stmt = db.select(Match).filter_by(id=id)
     match = db.session.scalar(stmt)
     if match:
@@ -54,7 +55,7 @@ def update_one_match(id):
 @matches_bp.route('/', methods=['DELETE'])
 @jwt_required
 def delete_one_match(id):
-    # authorize()
+    authorize()
     stmt = db.select(Match).filter_by(id=id)
     match = db.session.scalar(stmt)
     if match:

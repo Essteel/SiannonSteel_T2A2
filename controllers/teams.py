@@ -1,5 +1,6 @@
 from init import db
 from models.team import Team, TeamSchema
+from controllers.auth import authorize
 
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
@@ -10,7 +11,7 @@ teams_bp = Blueprint('teams', __name__, url_prefix='/teams')
 @teams_bp.route('/', methods=['POST'])
 @jwt_required
 def create_team():
-    # authorize()
+    authorize()
     team = Team(
         name = request.json['name']
     )
@@ -37,7 +38,7 @@ def get_one_team():
 @teams_bp.route('/<int:id>', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_one_team(id):
-    # authorize()
+    authorize()
     stmt = db.select(Team).filter_by(id=id)
     team = db.session.scalar(stmt)
     if team:
@@ -54,7 +55,7 @@ def update_one_team(id):
 @teams_bp.route('/<int:id>', methods=['DELETE'])
 @jwt_required
 def delete_one_team(id):
-    # authorize()
+    authorize()
     stmt = db.select(Team).filter_by(id=id)
     team = db.session.scalar(stmt)
     if team:
