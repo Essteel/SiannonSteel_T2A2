@@ -9,9 +9,10 @@ class TeamMatch(db.Model):
     team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'), nullable=False)
 
-    team = db.relationship('Team', back_populates='team_matches')
-    match = db.relationship('Match', back_populates='team_matches')
+    # team = db.relationship('Team', back_populates='team_matches')
+    # match = db.relationship('Match', back_populates='team_matches')
 
 class TeamMatchSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'score', 'team_id', 'match_id', 'team', 'match')
+        fields = ('id', 'score', 'team', 'match')
+        ordered = True

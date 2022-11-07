@@ -13,4 +13,4 @@ class Team(db.Model):
 
 class TeamSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'name', 'total_won', 'total_drawn', 'total_lost')
+        fields = ('id', 'name', 'total_won', 'total_drawn', 'total_lost', 'users')
