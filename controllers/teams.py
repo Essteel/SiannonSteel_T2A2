@@ -9,7 +9,7 @@ teams_bp = Blueprint('teams', __name__, url_prefix='/teams')
 
 # CREATE
 @teams_bp.route('/', methods=['POST'])
-@jwt_required
+@jwt_required()
 def create_team():
     authorize()
     team = Team(
@@ -25,7 +25,7 @@ def get_all_teams():
     teams = db.session.scalars(stmt)
     return TeamSchema(many=True).dump(teams)
 
-@teams_bp.route('/<int:id')
+@teams_bp.route('/<int:id>/')
 def get_one_team():
     stmt = db.select(Team).filter_by(id=id)
     team = db.session.scalar(stmt)
@@ -35,7 +35,7 @@ def get_one_team():
         return {'error': f'The team you requested with id {id} cannot be found.'}, 404
 
 # UPDATE
-@teams_bp.route('/<int:id>', methods=['PUT', 'PATCH'])
+@teams_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_one_team(id):
     authorize()
@@ -52,8 +52,8 @@ def update_one_team(id):
         return {'error': f'The team you requested with id {id} cannot be found.'}, 404
 
 # DELETE
-@teams_bp.route('/<int:id>', methods=['DELETE'])
-@jwt_required
+@teams_bp.route('/<int:id>/', methods=['DELETE'])
+@jwt_required()
 def delete_one_team(id):
     authorize()
     stmt = db.select(Team).filter_by(id=id)

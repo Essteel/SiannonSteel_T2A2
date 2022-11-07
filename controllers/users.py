@@ -9,7 +9,7 @@ users_bp = Blueprint('users', __name__, url_prefix='/users')
 
 # CREATE
 @users_bp.route('/', methods=['POST'])
-@jwt_required
+@jwt_required()
 def create_one_user():
     authorize()
     user = User(
@@ -24,7 +24,7 @@ def create_one_user():
 
 # READ
 @users_bp.route('/<int:id>')
-@jwt_required
+@jwt_required()
 def get_one_user(id):
     authorize()
     stmt = db.select(User).filter_by(id=id)

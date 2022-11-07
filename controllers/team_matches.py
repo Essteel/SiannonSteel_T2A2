@@ -9,7 +9,7 @@ team_matches_bp = Blueprint('team_matches', __name__, url_prefix='/team_matches'
 
 # CREATE
 @team_matches_bp.route('/', methods=['POST'])
-@jwt_required
+@jwt_required()
 def create_one_team_match():
     authorize()
     team_match = TeamMatch(
@@ -39,7 +39,7 @@ def get_all_team_matches(id):
 
 # UPDATE
 @team_matches_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
-@jwt_required
+@jwt_required()
 def update_one_team_match(id):
     authorize()
     stmt = db.select(TeamMatch).filter_by(id=id)
@@ -55,7 +55,7 @@ def update_one_team_match(id):
 
 # DELETE
 @team_matches_bp.route('/', methods=['DELETE'])
-@jwt_required
+@jwt_required()
 def delete_one_team_match(id):
     authorize()
     stmt = db.select(TeamMatch).filter_by(id=id)

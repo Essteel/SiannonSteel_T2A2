@@ -9,7 +9,7 @@ matches_bp = Blueprint('matches', __name__, url_prefix='/matches')
 
 # CREATE
 @matches_bp.route('/', methods=['POST'])
-@jwt_required
+@jwt_required()
 def create_one_match():
     authorize()
     match = Match(
@@ -38,7 +38,7 @@ def get_all_matches(id):
 
 # UPDATE
 @matches_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
-@jwt_required
+@jwt_required()
 def update_one_match(id):
     authorize()
     stmt = db.select(Match).filter_by(id=id)
@@ -53,7 +53,7 @@ def update_one_match(id):
 
 # DELETE
 @matches_bp.route('/', methods=['DELETE'])
-@jwt_required
+@jwt_required()
 def delete_one_match(id):
     authorize()
     stmt = db.select(Match).filter_by(id=id)

@@ -54,7 +54,7 @@ def seed_db():
     ]
     db.session.add_all(teams)
     db.session.commit()
-    
+  
     users = [
         User(
             first_name = 'Karl',
@@ -129,7 +129,7 @@ def seed_db():
     ]
     db.session.add_all(users)
     db.session.commit()
-    
+
     matches = [
         Match(
             date = '2022-12-01',
