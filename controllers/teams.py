@@ -26,7 +26,7 @@ def get_all_teams():
     return TeamSchema(many=True).dump(teams)
 
 @teams_bp.route('/<int:id>/')
-def get_one_team():
+def get_one_team(id):
     stmt = db.select(Team).filter_by(id=id)
     team = db.session.scalar(stmt)
     if team:

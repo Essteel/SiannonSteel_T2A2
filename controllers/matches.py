@@ -31,7 +31,7 @@ def get_one_match(id):
         return {'error': f'The match you requested with id {id} cannot be found.'}, 404
 
 @matches_bp.route('/')
-def get_all_matches(id):
+def get_all_matches():
     stmt = db.select(Match).order_by(Match.date and Match.time)
     matches = db.session.scalars(stmt)
     return MatchSchema(many=True).dump(matches)
@@ -52,7 +52,7 @@ def update_one_match(id):
         return {'error': f'The match you requested with id {id} cannot be found.'}, 404
 
 # DELETE
-@matches_bp.route('/', methods=['DELETE'])
+@matches_bp.route('/<int:id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_match(id):
     authorize()
@@ -61,5 +61,6 @@ def delete_one_match(id):
     if match:
         db.session.delete(match)
         db.session.commit()
+        return {'message': f'Match with id {id} was deleted.'}
     else:
         return {'error': f'The match you requested with id {id} cannot be found.'}, 404
