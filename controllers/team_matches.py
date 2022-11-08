@@ -13,7 +13,6 @@ team_match_bp = Blueprint('results', __name__, url_prefix='/results')
 def create_one_result():
     authorize()
     result = TeamMatch(
-        score = request.json['score']
     )
     db.session.add(result)
     db.session.commit()
@@ -30,7 +29,7 @@ def get_one_result(id):
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
 
 @team_match_bp.route('/')
-def get_all_results(id):
+def get_all_results():
     stmt = db.select(TeamMatch).order_by(TeamMatch.id)
     results = db.session.scalars(stmt)
     return TeamMatchSchema(many=True).dump(results)

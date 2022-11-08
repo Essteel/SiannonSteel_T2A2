@@ -17,6 +17,7 @@ def create_team():
     )
     db.session.add(team)
     db.session.commit()
+    return TeamSchema().dump(team), 201
 
 # READ
 @teams_bp.route('/')

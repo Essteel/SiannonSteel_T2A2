@@ -43,7 +43,7 @@ def get_all_users():
     return UserSchema(exclude=['password'], many=True).dump(users)
 
 # UPDATE
-@users_bp.route('/<int:id>/')
+@users_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_one_user(id):
     authorize()
@@ -53,7 +53,7 @@ def update_one_user(id):
         user.first_name = request.json.get('first_name') or user.first_name
         user.last_name = request.json.get('last_name') or user.last_name
         user.email = request.json.get('email') or user.email
-        user.password = bcrypt.generate_password_hash(request.json['password']).decode('utf-8') or user.password
+        user.password = bcrypt.generate_password_hash(request.json.get('password')).decode('utf-8') or user.password
         user.bio = request.json.get('bio') or user.bio
         user.country = request.json.get('country') or user.country
         user.is_admin = request.json.get('is_admin') or user.is_admin
@@ -65,7 +65,7 @@ def update_one_user(id):
         return {'error': f'User not found with id {id}'}, 404
 
 # DELETE
-@users_bp.route('/<int:id>/')
+@users_bp.route('/<int:id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_user(id):
     authorize()

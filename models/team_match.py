@@ -4,7 +4,7 @@ class TeamMatch(db.Model):
     __tablename__ = 'team_matches'
 
     id = db.Column(db.Integer, primary_key=True)
-    score = db.Column(db.Integer)
+    score = db.Column(db.Integer, nullable=True)
 
     team_id = db.Column(db.Integer, db.ForeignKey('teams.id', ondelete='cascade'), nullable=False)
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id', ondelete='cascade'), nullable=False)
