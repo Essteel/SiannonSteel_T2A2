@@ -2,7 +2,7 @@ from init import db, bcrypt
 from models.user import User
 from models.team import Team
 from models.match import Match
-from models.team_match import TeamMatch
+from models.team_match import Result
 
 from flask import Blueprint
 
@@ -159,35 +159,52 @@ def seed_db():
     db.session.add_all(matches)
     db.session.commit()
 
-    team_matches = [
-        TeamMatch(
+    results = [
+        Result(
             score = 24,
-            team_id = 3,
-            match_id = 0
+            # team_id = 3,
+            # match_id = 0
         ),
-        TeamMatch(
+        Result(
             score = 17,
-            team_id = 8,
-            match_id = 0
+            # team_id = 8,
+            # match_id = 0
         ),
-        TeamMatch(
+        Result(
             score = 28,
-            team_id = 1,
-            match_id = 1
+            # team_id = 1,
+            # match_id = 1
         ),
-        TeamMatch(
+        Result(
             score = 36,
-            team_id = 3,
-            match_id = 1
+            # team_id = 3,
+            # match_id = 1
         ),
-        TeamMatch(
-            team_id = 1,
-            match_id = 2
+        Result(
+            # team_id = 1,
+            # match_id = 2
         ),
-        TeamMatch(
-            team_id = 8,
-            match_id = 2
+        Result(
+            # team_id = 8,
+            # match_id = 2
         )
+    ]
+    db.session.add_all(results)
+    db.session.commit()
+
+    team_matches = [
+        teams[3].results.append(results[0]),
+        teams[3].matches.append(matches[0]),
+        teams[8].results.append(results[1]),
+        teams[8].matches.append(matches[0]),
+        teams[1].results.append(results[2]),
+        teams[1].matches.append(matches[1]),
+        teams[3].results.append(results[3]),
+        teams[3].matches.append(matches[1]),
+        teams[1].results.append(results[4]),
+        teams[1].matches.append(matches[2]),
+        teams[8].results.append(results[5]),
+        teams[8].matches.append(matches[2])
     ]
     db.session.add_all(team_matches)
     db.session.commit()

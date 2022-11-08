@@ -1,67 +1,63 @@
 from init import db
-from models.team_match import TeamMatch, TeamMatchSchema
+from models.team_match import Result, ResultSchema
 from controllers.auth import authorize
 
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-team_matches_bp = Blueprint('team_matches', __name__, url_prefix='/team_matches')
+results_bp = Blueprint('results', __name__, url_prefix='/results')
 
 # CREATE
-@team_matches_bp.route('/', methods=['POST'])
+@results_bp.route('/', methods=['POST'])
 @jwt_required()
-def create_one_team_match():
+def create_one_result():
     authorize()
-    team_match = TeamMatch(
-        score = request.json['score'],
-        team_id = request.json['team_id'],
-        match_id = request.json['match_id']
+    result = Result(
+        score = request.json['score']
     )
-    db.session.add(team_match)
+    db.session.add(result)
     db.session.commit()
-    return TeamMatchSchema().dump(team_match), 201
+    return ResultSchema().dump(result), 201
 
 # READ
-@team_matches_bp.route('/<int:id>/')
-def get_one_team_match(id):
-    stmt = db.select(TeamMatch).filter_by(id=id)
-    team_match = db.session.scalar(stmt)
-    if team_match:
-        return TeamMatchSchema().dump(team_match)
+@results_bp.route('/<int:id>/')
+def get_one_result(id):
+    stmt = db.select(Result).filter_by(id=id)
+    result = db.session.scalar(stmt)
+    if result:
+        return ResultSchema().dump(result)
     else:
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
 
-@team_matches_bp.route('/')
-def get_all_team_matches(id):
-    stmt = db.select(TeamMatch).order_by(TeamMatch.match_id)
-    team_matches = db.session.scalars(stmt)
-    return TeamMatchSchema(many=True).dump(team_matches)
+@results_bp.route('/')
+def get_all_results(id):
+    stmt = db.select(Result).order_by(Result.id)
+    results = db.session.scalars(stmt)
+    return ResultSchema(many=True).dump(results)
 
 # UPDATE
-@team_matches_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
+@results_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
 @jwt_required()
-def update_one_team_match(id):
+def update_one_result(id):
     authorize()
-    stmt = db.select(TeamMatch).filter_by(id=id)
-    team_match = db.session.scalar(stmt)
-    if team_match:
-        team_match.score = request.json.get('score') or team_match.score
-        team_match.team_id = request.json.get('team_id') or team_match.team_id
-        team_match.match_id = request.json.get('match_id') or team_match.match_id
+    stmt = db.select(Result).filter_by(id=id)
+    result = db.session.scalar(stmt)
+    if result:
+        result.score = request.json.get('score') or result.score
         db.session.commit()
-        return TeamMatchSchema().dump(team_match)
+        return ResultSchema().dump(result)
     else:
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
 
 # DELETE
-@team_matches_bp.route('/', methods=['DELETE'])
+@results_bp.route('/', methods=['DELETE'])
 @jwt_required()
-def delete_one_team_match(id):
+def delete_one_result(id):
     authorize()
-    stmt = db.select(TeamMatch).filter_by(id=id)
-    team_match = db.session.scalar(stmt)
-    if team_match:
-        db.session.delete(team_match)
+    stmt = db.select(Result).filter_by(id=id)
+    result = db.session.scalar(stmt)
+    if result:
+        db.session.delete(result)
         db.session.commit()
     else:
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
