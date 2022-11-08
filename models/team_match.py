@@ -1,20 +1,23 @@
 from init import db, ma
 
-team_match = db.Table('team_match',
-    db.Column('team_id', db.Integer, db.ForeignKey('teams.id'), primary_key=True),
-    db.Column('match_id', db.Integer, db.ForeignKey('matches.id'), primary_key=True)
-)
+# team_match = db.Table('team_match',
+#     db.Column('team_id', db.Integer, db.ForeignKey('teams.id')),
+#     db.Column('match_id', db.Integer, db.ForeignKey('matches.id'))
+# )
 
-class Result(db.Model):
-    __tablename__ = 'results'
+class TeamMatch(db.Model):
+    __tablename__ = 'team_matches'
 
     id = db.Column(db.Integer, primary_key=True)
     score = db.Column(db.Integer)
 
-    # team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
-    # match_id = db.Column(db.Integer, db.ForeignKey('matches.id'), nullable=False)
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id', ondelete='cascade'), primary_key=True, nullable=False)
+    match_id = db.Column(db.Integer, db.ForeignKey('matches.id', ondelete='cascade'), primary_key=True, nullable=False)
 
-class ResultSchema(ma.Schema):
+    team = db.relationship('Team', back_populates='team_matches')
+    match = db.relationship('Match', back_populates='team_matches')
+
+class TeamMatchSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'score')
+        fields = ('id', 'score', 'team_id', 'match_id')
         ordered = True
