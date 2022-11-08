@@ -25,13 +25,16 @@ def seed_db():
             name = 'Team Icicle'
         ),
         Team(
-            name = 'Meteoroids'
+            name = 'Meteoroids',
+            total_drawn = 1
         ),
         Team(
             name = 'Team Angular'
         ),
         Team(
-            name = 'Purple Kangaroo'
+            name = 'Purple Kangaroo',
+            total_won = 1,
+            total_drawn = 1
         ),
         Team(
             name = 'Team Elevate'
@@ -46,7 +49,8 @@ def seed_db():
             name = 'Team Victoria'
         ),
         Team(
-            name = 'Frost Trolls'
+            name = 'Frost Trolls',
+            total_lost = 1
         ),
         Team(
             name = 'Balance Team'
@@ -176,7 +180,7 @@ def seed_db():
             match_id = 2
         ),
         TeamMatch(
-            score = 36,
+            score = 28,
             team_id = 4,
             match_id = 2
         ),

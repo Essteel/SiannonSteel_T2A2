@@ -4,6 +4,7 @@ from controllers.auth import authorize
 
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
+from sqlalchemy import bindparam
 
 teams_bp = Blueprint('teams', __name__, url_prefix='/teams')
 
@@ -35,6 +36,12 @@ def get_one_team(id):
     else:
         return {'error': f'The team you requested with id {id} cannot be found.'}, 404
 
+@teams_bp.route('/leaderboard/')
+def get_leaderboard():
+    stmt = db.select(Team).order_by(Team.total_won.desc(), Team.total_drawn.desc(), Team.total_lost.desc())
+    teams = db.session.scalars(stmt)
+    return TeamSchema(many=True, exclude=['id']).dump(teams)
+
 # UPDATE
 @teams_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
 @jwt_required()
@@ -51,6 +58,15 @@ def update_one_team(id):
         return TeamSchema().dump(team)
     else:
         return {'error': f'The team you requested with id {id} cannot be found.'}, 404
+
+# @teams_bp.route('/<int:id1>/<int:id2>/update_score', methods=['PUT', 'PATCH'])
+# @jwt_required()
+# def update_team_scores(id1, id2):
+#     authorize()
+#     stmt = (
+#         update(Team).where(Team.id == id1).values()
+#     )
+
 
 # DELETE
 @teams_bp.route('/<int:id>/', methods=['DELETE'])
