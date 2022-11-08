@@ -1,18 +1,13 @@
 from init import db, ma
 
-# team_match = db.Table('team_match',
-#     db.Column('team_id', db.Integer, db.ForeignKey('teams.id')),
-#     db.Column('match_id', db.Integer, db.ForeignKey('matches.id'))
-# )
-
 class TeamMatch(db.Model):
     __tablename__ = 'team_matches'
 
     id = db.Column(db.Integer, primary_key=True)
     score = db.Column(db.Integer)
 
-    team_id = db.Column(db.Integer, db.ForeignKey('teams.id', ondelete='cascade'), primary_key=True, nullable=False)
-    match_id = db.Column(db.Integer, db.ForeignKey('matches.id', ondelete='cascade'), primary_key=True, nullable=False)
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id', ondelete='cascade'), nullable=False)
+    match_id = db.Column(db.Integer, db.ForeignKey('matches.id', ondelete='cascade'), nullable=False)
 
     team = db.relationship('Team', back_populates='team_matches')
     match = db.relationship('Match', back_populates='team_matches')

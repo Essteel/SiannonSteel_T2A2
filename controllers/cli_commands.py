@@ -70,7 +70,7 @@ def seed_db():
             password = bcrypt.generate_password_hash('g1ng0nnaw1n!').decode('utf-8'),
             bio = 'Two time world champion for the USA.',
             country = 'USA',
-            team_id = 8
+            team_id = 9
         ),
         User(
             first_name = 'Todd',
@@ -79,7 +79,7 @@ def seed_db():
             password = bcrypt.generate_password_hash('US4esports4eva').decode('utf-8'),
             bio = 'Rookie taking the scene by storm with their natural skill.',
             country = 'USA',
-            team_id = 1
+            team_id = 2
         ),
         User(
             first_name = 'Sleve',
@@ -88,7 +88,7 @@ def seed_db():
             password = bcrypt.generate_password_hash('29September*#').decode('utf-8'),
             bio = 'Was on the winning team of the tournament last year.',
             country = 'Scotland',
-            team_id = 3
+            team_id = 4
         ),
         User(
             first_name = 'Dwight',
@@ -97,7 +97,7 @@ def seed_db():
             password = bcrypt.generate_password_hash('5lLiU89!Xyp2P').decode('utf-8'),
             bio = 'A new player to the tournament having only joined their team this year.',
             country = 'Germany',
-            team_id = 1
+            team_id = 2
         ),
         User(
             first_name = 'Leyla',
@@ -106,7 +106,7 @@ def seed_db():
             password = bcrypt.generate_password_hash('PurpleKangaroo95').decode('utf-8'),
             bio = 'First woman to be on the winning team in the tournament\'s history.',
             country = 'China',
-            team_id = 3
+            team_id = 4
         ),
         User(
             first_name = 'Mary',
@@ -115,7 +115,7 @@ def seed_db():
             password = bcrypt.generate_password_hash('winners8637nugget').decode('utf-8'),
             bio = 'Had the highest kill count in last year\'s tournament',
             country = 'South Korea',
-            team_id = 8
+            team_id = 9
         ),
         User(
             first_name = 'Anatolia',
@@ -162,51 +162,34 @@ def seed_db():
     team_matches = [
         TeamMatch(
             score = 24,
-            team_id = 3,
-            match_id = 0
+            team_id = 4,
+            match_id = 1
         ),
         TeamMatch(
             score = 17,
-            team_id = 8,
-            match_id = 0
+            team_id = 9,
+            match_id = 1
         ),
         TeamMatch(
             score = 28,
-            team_id = 1,
-            match_id = 1
+            team_id = 2,
+            match_id = 2
         ),
         TeamMatch(
             score = 36,
-            team_id = 3,
-            match_id = 1
-        ),
-        TeamMatch(
-            team_id = 1,
+            team_id = 4,
             match_id = 2
         ),
         TeamMatch(
-            team_id = 8,
-            match_id = 2
+            team_id = 2,
+            match_id = 3
+        ),
+        TeamMatch(
+            team_id = 9,
+            match_id = 3
         )
     ]
     db.session.add_all(team_matches)
     db.session.commit()
-
-    # team_matches = [
-    #     teams[3].results.append(results[0]),
-    #     teams[3].matches.append(matches[0]),
-    #     teams[8].results.append(results[1]),
-    #     teams[8].matches.append(matches[0]),
-    #     teams[1].results.append(results[2]),
-    #     teams[1].matches.append(matches[1]),
-    #     teams[3].results.append(results[3]),
-    #     teams[3].matches.append(matches[1]),
-    #     teams[1].results.append(results[4]),
-    #     teams[1].matches.append(matches[2]),
-    #     teams[8].results.append(results[5]),
-    #     teams[8].matches.append(matches[2])
-    # ]
-    # db.session.add_all(team_matches)
-    # db.session.commit()
 
     print('All tables seeded successfully.')
