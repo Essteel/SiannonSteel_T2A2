@@ -1,9 +1,9 @@
+from flask import Blueprint, request
+from flask_jwt_extended import jwt_required
+
 from init import db, bcrypt
 from models.user import User, UserSchema
 from controllers.auth import authorize
-
-from flask import Blueprint, request
-from flask_jwt_extended import jwt_required
 
 users_bp = Blueprint('users', __name__, url_prefix='/users')
 

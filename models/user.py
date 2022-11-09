@@ -1,6 +1,6 @@
-from init import db, ma
-
 from marshmallow import fields
+
+from init import db, ma
 
 class User(db.Model):
     __tablename__ = 'users'

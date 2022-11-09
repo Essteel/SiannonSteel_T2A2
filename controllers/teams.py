@@ -1,10 +1,9 @@
+from flask import Blueprint, request
+from flask_jwt_extended import jwt_required
+
 from init import db
 from models.team import Team, TeamSchema
 from controllers.auth import authorize
-
-from flask import Blueprint, request
-from flask_jwt_extended import jwt_required
-from sqlalchemy import bindparam
 
 teams_bp = Blueprint('teams', __name__, url_prefix='/teams')
 

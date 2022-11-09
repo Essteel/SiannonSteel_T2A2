@@ -1,9 +1,9 @@
+from flask import Blueprint, request
+from flask_jwt_extended import jwt_required
+
 from init import db
 from models.match import Match, MatchSchema
 from controllers.auth import authorize
-
-from flask import Blueprint, request
-from flask_jwt_extended import jwt_required
 
 matches_bp = Blueprint('matches', __name__, url_prefix='/matches')
 

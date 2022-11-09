@@ -1,10 +1,10 @@
+from flask import Blueprint
+
 from init import db, bcrypt
 from models.user import User
 from models.team import Team
 from models.match import Match
 from models.team_match import TeamMatch
-
-from flask import Blueprint
 
 db_commands = Blueprint('db', __name__)
 
