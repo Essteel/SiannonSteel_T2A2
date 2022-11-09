@@ -30,7 +30,7 @@ def get_one_user(id):
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
     if user:
-        return UserSchema().dump(user)
+        return UserSchema(exclude=['password']).dump(user)
     else:
         return {'error': f'The user you requested with id {id} cannot be found.'}, 404
 

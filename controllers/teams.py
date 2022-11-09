@@ -25,7 +25,7 @@ def create_team():
 def get_all_teams():
     stmt = db.select(Team).order_by(Team.name)
     teams = db.session.scalars(stmt)
-    return TeamSchema(many=True).dump(teams)
+    return TeamSchema(many=True, exclude=['users']).dump(teams)
 
 @teams_bp.route('/<int:id>/')
 def get_one_team(id):
@@ -40,7 +40,7 @@ def get_one_team(id):
 def get_leaderboard():
     stmt = db.select(Team).order_by(Team.total_won.desc(), Team.total_drawn.desc(), Team.total_lost.desc())
     teams = db.session.scalars(stmt)
-    return TeamSchema(many=True, exclude=['id']).dump(teams)
+    return TeamSchema(many=True, exclude=['users']).dump(teams)
 
 # UPDATE
 @teams_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
