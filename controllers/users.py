@@ -53,7 +53,6 @@ def update_one_user(id):
         user.first_name = request.json.get('first_name') or user.first_name
         user.last_name = request.json.get('last_name') or user.last_name
         user.email = request.json.get('email') or user.email
-        user.password = bcrypt.generate_password_hash(request.json.get('password')).decode('utf-8') or user.password
         user.bio = request.json.get('bio') or user.bio
         user.country = request.json.get('country') or user.country
         user.is_admin = request.json.get('is_admin') or user.is_admin
