@@ -1,5 +1,7 @@
 from init import db, ma
 
+from marshmallow import fields
+
 class Team(db.Model):
     __tablename__ = 'teams'
 
@@ -13,6 +15,7 @@ class Team(db.Model):
     team_matches = db.relationship('TeamMatch', back_populates='team', cascade='all, delete')
 
 class TeamSchema(ma.Schema):
+    users = fields.Nested('UserSchema', many=True, only=['first_name', 'last_name'])
     class Meta:
-        fields = ('id', 'name', 'total_won', 'total_drawn', 'total_lost')
+        fields = ('id', 'name', 'total_won', 'total_drawn', 'total_lost', 'users')
         ordered = True
