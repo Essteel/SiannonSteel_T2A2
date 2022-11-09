@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
+from sqlalchemy.exc import IntegrityError
 
 from init import db, bcrypt
 from models.user import User, UserSchema
@@ -12,15 +13,18 @@ users_bp = Blueprint('users', __name__, url_prefix='/users')
 @jwt_required()
 def create_one_user():
     authorize()
-    user = User(
-        first_name = request.json['first_name'],
-        last_name = request.json['last_name'],
-        email = request.json['email'],
-        password = bcrypt.generate_password_hash(request.json['password']).decode('utf-8')
-    )
-    db.session.add(user)
-    db.session.commit()
-    return UserSchema(exclude=['password']).dump(user), 201
+    try:
+        user = User(
+            first_name = request.json['first_name'],
+            last_name = request.json['last_name'],
+            email = request.json['email'],
+            password = bcrypt.generate_password_hash(request.json['password']).decode('utf-8')
+        )
+        db.session.add(user)
+        db.session.commit()
+        return UserSchema(exclude=['password']).dump(user), 201
+    except IntegrityError:
+        return {'error': 'That email address is already in use'}, 409
 
 # READ
 @users_bp.route('/<int:id>')

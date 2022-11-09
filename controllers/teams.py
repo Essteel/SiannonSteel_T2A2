@@ -58,15 +58,6 @@ def update_one_team(id):
     else:
         return {'error': f'The team you requested with id {id} cannot be found.'}, 404
 
-# @teams_bp.route('/<int:id1>/<int:id2>/update_score', methods=['PUT', 'PATCH'])
-# @jwt_required()
-# def update_team_scores(id1, id2):
-#     authorize()
-#     stmt = (
-#         update(Team).where(Team.id == id1).values()
-#     )
-
-
 # DELETE
 @teams_bp.route('/<int:id>/', methods=['DELETE'])
 @jwt_required()
