@@ -13,6 +13,8 @@ team_match_bp = Blueprint('results', __name__, url_prefix='/results')
 def create_one_result():
     authorize()
     result = TeamMatch(
+        team_id = request.json['team_id'],
+        match_id = request.json['match_id']
     )
     db.session.add(result)
     db.session.commit()
