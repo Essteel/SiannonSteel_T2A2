@@ -12,9 +12,10 @@ team_match_bp = Blueprint('results', __name__, url_prefix='/results')
 @jwt_required()
 def create_one_result():
     authorize()
+    data = TeamMatchSchema().load(request.json)
     result = TeamMatch(
-        team_id = request.json['team_id'],
-        match_id = request.json['match_id']
+        team_id = data['team_id'],
+        match_id = data['match_id']
     )
     db.session.add(result)
     db.session.commit()
