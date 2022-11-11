@@ -1,8 +1,12 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
+from flask.json import jsonify
+from sqlalchemy.orm import Bundle
 
 from init import db
 from models.team_match import TeamMatch, TeamMatchSchema
+from models.match import Match, MatchSchema
+from models.team import Team, TeamSchema
 from controllers.auth import authorize
 
 team_match_bp = Blueprint('results', __name__, url_prefix='/results')
