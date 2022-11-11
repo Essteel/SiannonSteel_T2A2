@@ -9,9 +9,10 @@ class TeamMatch(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     score = db.Column(db.Integer, nullable=True)
+    status = db.Column(db.String, nullable=True)
 
-    team_id = db.Column(db.Integer, db.ForeignKey('teams.id', ondelete='cascade'), primary_key=True, nullable=False)
-    match_id = db.Column(db.Integer, db.ForeignKey('matches.id', ondelete='cascade'), primary_key=True, nullable=False)
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id', ondelete='cascade'), nullable=False)
+    match_id = db.Column(db.Integer, db.ForeignKey('matches.id', ondelete='cascade'), nullable=False)
 
     team = db.relationship('Team', back_populates='team_matches')
     match = db.relationship('Match', back_populates='team_matches')
@@ -31,5 +32,5 @@ class TeamMatchSchema(ma.Schema):
         if count > 2:
             raise ValidationError('You already have two team match records for that match.')
     class Meta:
-        fields = ('id', 'score', 'team_id', 'match_id', 'team', 'match')
+        fields = ('id', 'score', 'status', 'team_id', 'match_id', 'team', 'match')
         ordered = True

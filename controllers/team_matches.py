@@ -38,7 +38,7 @@ def get_one_result(match_id):
 
 @team_match_bp.route('/')
 def get_all_results():
-    stmt = db.select(TeamMatch).order_by(TeamMatch.id)
+    stmt = db.select(TeamMatch).order_by(TeamMatch.match_id)
     results = db.session.scalars(stmt)
     return TeamMatchSchema(many=True).dump(results)
 
