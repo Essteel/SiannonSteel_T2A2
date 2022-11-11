@@ -14,6 +14,7 @@ def create_one_result():
     authorize()
     data = TeamMatchSchema().load(request.json)
     result = TeamMatch(
+        score = data['score'],
         team_id = data['team_id'],
         match_id = data['match_id']
     )
@@ -52,7 +53,7 @@ def update_one_result(id):
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
 
 # DELETE
-@team_match_bp.route('/', methods=['DELETE'])
+@team_match_bp.route('/<int:id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_result(id):
     authorize()
@@ -61,5 +62,6 @@ def delete_one_result(id):
     if result:
         db.session.delete(result)
         db.session.commit()
+        return {'message': f'Result with id {id} was deleted.'}
     else:
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
