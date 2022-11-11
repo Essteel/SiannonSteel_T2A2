@@ -24,9 +24,9 @@ def create_one_match():
 @matches_bp.route('/<int:id>/')
 def get_one_match(id):
     stmt = db.select(Match).filter_by(id=id)
-    match = db.session.scalar(stmt)
+    match = db.session.scalars(stmt)
     if match:
-        return MatchSchema().dump(match)
+        return MatchSchema(many=True).dump(match)
     else:
         return {'error': f'The match you requested with id {id} cannot be found.'}, 404
 

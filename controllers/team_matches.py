@@ -27,12 +27,12 @@ def create_one_result():
     return TeamMatchSchema().dump(result), 201
 
 # READ
-@team_match_bp.route('/<int:id>/')
-def get_one_result(id):
-    stmt = db.select(TeamMatch).filter_by(id=id)
-    result = db.session.scalar(stmt)
-    if result:
-        return TeamMatchSchema().dump(result)
+@team_match_bp.route('/<int:match_id>/')
+def get_one_result(match_id):
+    stmt = db.select(TeamMatch).filter_by(match_id=match_id)
+    results = db.session.scalars(stmt)
+    if results:
+        return TeamMatchSchema(many=True).dump(results)
     else:
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
 
