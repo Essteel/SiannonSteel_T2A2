@@ -32,7 +32,7 @@ def get_one_match(id):
 
 @matches_bp.route('/')
 def get_all_matches():
-    stmt = db.select(Match).order_by(Match.date and Match.time)
+    stmt = db.select(Match).order_by(Match.date, Match.time)
     matches = db.session.scalars(stmt)
     return MatchSchema(many=True).dump(matches)
 
