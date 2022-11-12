@@ -38,7 +38,7 @@ class Team(db.Model):
 
 class TeamSchema(ma.Schema):
     users = fields.Nested('UserSchema', many=True, exclude=['email', 'password', 'is_admin', 'team'])
-    team_matches = fields.Nested('TeamMatchSchema', many=True)
+    team_matches = fields.Nested('TeamMatchSchema', many=True, exclude=['team'])
     class Meta:
         fields = ('id', 'name', 'total_won', 'total_drawn', 'total_lost', 'users', 'team_matches')
         ordered = True

@@ -12,6 +12,10 @@ class Match(db.Model):
     team_matches = db.relationship('TeamMatch', back_populates='match', cascade='all, delete')
 
 class MatchSchema(ma.Schema):
+    id = fields.Integer(required=True)
+    date = fields.Date(required=True, format='%Y-%m-%d', error='Date must be in the format YYYY-MM-DD')
+    time = fields.Time(required=True, format='%H:%M:%S', error='Time must be in the format HH:MM:SS')
+    
     team_matches = fields.Nested('TeamMatchSchema', many=True, exclude=['match'])
     class Meta:
         fields = ('id', 'date', 'time', 'team_matches')
