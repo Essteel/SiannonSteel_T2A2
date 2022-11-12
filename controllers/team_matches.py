@@ -1,12 +1,8 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
-from flask.json import jsonify
-from sqlalchemy.orm import Bundle
 
 from init import db
 from models.team_match import TeamMatch, TeamMatchSchema
-from models.match import Match, MatchSchema
-from models.team import Team, TeamSchema
 from controllers.auth import authorize
 
 team_match_bp = Blueprint('results', __name__, url_prefix='/results')
@@ -28,22 +24,22 @@ def create_one_result():
     return TeamMatchSchema().dump(result), 201
 
 # READ
-@team_match_bp.route('/<int:match_id>/')
+@team_match_bp.route('/<int:match_id>')
 @jwt_required()
 def get_one_result(match_id):
     authorize()
-    stmt = db.select(TeamMatch).filter_by(match_id=match_id)
+    stmt = db.select(TeamMatch)
     results = db.session.scalars(stmt)
-    if results:
-        return TeamMatchSchema(many=True).dump(results)
-    else:
-        return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
+    for result in results:
+        if match_id == result.match_id:
+            return TeamMatchSchema(many=True).dump(results)
+        else:
+            return {'error': f'The team match you requested with id {match_id} cannot be found.'}, 404
 
 @team_match_bp.route('/')
 @jwt_required()
 def get_all_results():
     authorize()
-    # date = db.session.query(Match.date)
     stmt = db.select(TeamMatch)
     results = db.session.scalars(stmt)
     return TeamMatchSchema(many=True).dump(results)
