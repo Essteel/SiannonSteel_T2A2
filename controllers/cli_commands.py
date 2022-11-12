@@ -1,3 +1,17 @@
+""" Custom commands to drop, create and seed the database
+
+This module contains commands which can be used within
+the terminal to drop, create and seed the database with
+some data. They can be executed using the format "flask
+db 'command name'".
+
+Functions
+---------
+create_db()
+drop_db()
+seed_db()
+"""
+
 from flask import Blueprint
 
 from init import db, bcrypt
@@ -10,16 +24,34 @@ db_commands = Blueprint('db', __name__)
 
 @db_commands.cli.command('create')
 def create_db():
+    """ Creates all tables in the database
+
+    Creates the 'users', 'teams', 'matches' and
+    'team_matches' tables from the imported models.
+    """ 
     db.create_all()
     print('Tables created successfully.')
 
 @db_commands.cli.command('drop')
 def drop_db():
+    """ Drops all tables in the database
+
+    Drops the 'users', 'teams', 'matches' and
+    'team_matches' tables.
+    """
     db.drop_all()
     print('All tables dropped successfully.')
 
 @db_commands.cli.command('seed')
 def seed_db():
+    """ Seeds all tables in the database
+
+    Seeds the 'teams' table with a list of 10 unique
+    teams, the 'users' table with a list of 1 admin
+    user and 7 player users, the 'matches' table with
+    a list of 6 matches and the 'team_matches' table
+    with a list of 6 team matches.
+    """    
     teams = [
         Team(
             name = 'Team Icicle'
