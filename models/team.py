@@ -1,4 +1,5 @@
 from marshmallow import fields
+from marshmallow.validate import Regexp
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from init import db, ma
@@ -7,7 +8,7 @@ class Team(db.Model):
     __tablename__ = 'teams'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False, unique=True)
 
     @hybrid_property
     def total_won(self):
@@ -37,6 +38,9 @@ class Team(db.Model):
     team_matches = db.relationship('TeamMatch', back_populates='team', cascade='all, delete')
 
 class TeamSchema(ma.Schema):
+    id = fields.Integer(required=True)
+    name = fields.String(required=True, validate=(Regexp('^[a-zA-Z0-9 ]+$', error='Only letters, numbers and spaces are valid.')))
+    
     users = fields.Nested('UserSchema', many=True, exclude=['email', 'password', 'is_admin', 'team'])
     team_matches = fields.Nested('TeamMatchSchema', many=True, exclude=['team'])
     class Meta:
