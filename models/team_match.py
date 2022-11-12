@@ -21,20 +21,18 @@ class TeamMatch(db.Model):
 
 class TeamMatchSchema(ma.Schema):
     id = fields.Integer(required=True)
-    score = fields.Integer(validate=And(
-        Range(min=0, error='Score cannot be negative.'),
-        Range(max=1000, error='Score cannot be greater than 1000.')
-    ))
-    status = fields.String(allow_none=True,
-        validate=OneOf(VALID_STATUSES, error='Please enter value: \'won\', \'drawn\' or \'lost\'')
-    )
+    score = fields.Integer(validate=Range(min=0, max=1000,
+        error='Score cannot be negative or greater than 1000.'
+        ))
+    status = fields.String(allow_none=True,validate=OneOf(VALID_STATUSES,
+        error='Please enter value: \'won\', \'drawn\' or \'lost\''
+        ))
 
     team_id = fields.Integer(required=True)
     match_id = fields.Integer(required=True)
 
     team = fields.Nested('TeamSchema', only=['name'])
     match = fields.Nested('MatchSchema', only=['date', 'time'])
-    
     
     @validates('match_id')
     def validate_match(self, match_id):

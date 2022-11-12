@@ -19,6 +19,7 @@ def create_one_result():
     data = TeamMatchSchema().load(request.json)
     result = TeamMatch(
         score = data['score'],
+        status = data['status'],
         team_id = data['team_id'],
         match_id = data['match_id']
     )
@@ -49,10 +50,13 @@ def update_one_result(id):
     authorize()
     stmt = db.select(TeamMatch).filter_by(id=id)
     result = db.session.scalar(stmt)
+
+    data = TeamMatchSchema().load(request.json, partial=True)
     if result:
         result.score = request.json.get('score') or result.score
+        result.status = request.json.get('status') or result.status
         db.session.commit()
-        return TeamMatchSchema().dump(result)
+        return TeamMatchSchema().dump(data)
     else:
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
 
