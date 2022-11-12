@@ -12,8 +12,9 @@ teams_bp = Blueprint('teams', __name__, url_prefix='/teams')
 @jwt_required()
 def create_team():
     authorize()
+    data = TeamSchema().load(request.json)
     team = Team(
-        name = request.json['name']
+        name = data['name']
     )
     db.session.add(team)
     db.session.commit()

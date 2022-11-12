@@ -27,7 +27,7 @@ def create_one_user():
         return {'error': 'That email address is already in use'}, 409
 
 # READ
-@users_bp.route('/<int:id>')
+@users_bp.route('/<int:id>/')
 @jwt_required()
 def get_one_user(id):
     authorize()

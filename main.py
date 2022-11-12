@@ -35,10 +35,6 @@ def create_app():
     def validation_error(err):
         return {'error': err.messages}, 400
 
-    # @app.errorhandler(DataError)
-    # def data_error():
-    #     return {'error': 'Wrong data type entered.'}, 400
-
     app.config['JSON_SORT_KEYS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')
