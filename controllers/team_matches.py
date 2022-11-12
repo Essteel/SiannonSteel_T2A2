@@ -29,7 +29,9 @@ def create_one_result():
 
 # READ
 @team_match_bp.route('/<int:match_id>/')
+@jwt_required()
 def get_one_result(match_id):
+    authorize()
     stmt = db.select(TeamMatch).filter_by(match_id=match_id)
     results = db.session.scalars(stmt)
     if results:
@@ -38,7 +40,9 @@ def get_one_result(match_id):
         return {'error': f'The team match you requested with id {id} cannot be found.'}, 404
 
 @team_match_bp.route('/')
+@jwt_required()
 def get_all_results():
+    authorize()
     # date = db.session.query(Match.date)
     stmt = db.select(TeamMatch)
     results = db.session.scalars(stmt)
