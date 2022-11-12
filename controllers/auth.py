@@ -10,6 +10,12 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth_bp.route('/login/', methods=['POST'])
 def login():
+    """ 
+
+    Returns:
+        json: _description_
+        json: _description
+    """    
     stmt = db.select(User).filter_by(email=request.json['email'])
     user = db.session.scalar(stmt)
     if user and bcrypt.check_password_hash(user.password, request.json['password']):

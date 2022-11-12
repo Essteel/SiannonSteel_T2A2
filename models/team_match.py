@@ -21,10 +21,10 @@ class TeamMatch(db.Model):
 
 class TeamMatchSchema(ma.Schema):
     id = fields.Integer(required=True)
-    score = fields.Integer(validate=Range(min=0, max=1000,
+    score = fields.Integer(required=False, validate=Range(min=0, max=1000,
         error='Score cannot be negative or greater than 1000.'
         ))
-    status = fields.String(allow_none=True,validate=OneOf(VALID_STATUSES,
+    status = fields.String(required=False,validate=OneOf(VALID_STATUSES,
         error='Please enter value: \'won\', \'drawn\' or \'lost\''
         ))
 

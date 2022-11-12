@@ -12,10 +12,8 @@ team_match_bp = Blueprint('results', __name__, url_prefix='/results')
 @jwt_required()
 def create_one_result():
     authorize()
-    data = TeamMatchSchema().load(request.json)
+    data = TeamMatchSchema().load(request.json, partial=True)
     result = TeamMatch(
-        score = data['score'],
-        status = data['status'],
         team_id = data['team_id'],
         match_id = data['match_id']
     )
@@ -28,13 +26,12 @@ def create_one_result():
 @jwt_required()
 def get_one_result(match_id):
     authorize()
-    stmt = db.select(TeamMatch)
+    stmt = db.select(TeamMatch).filter_by(match_id=match_id)
     results = db.session.scalars(stmt)
-    for result in results:
-        if match_id == result.match_id:
-            return TeamMatchSchema(many=True).dump(results)
-        else:
-            return {'error': f'The team match you requested with id {match_id} cannot be found.'}, 404
+    if results:
+        return TeamMatchSchema(many=True).dump(results)
+    else:
+        return {'error': f'The match you requested with id {id} cannot be found.'}, 404
 
 @team_match_bp.route('/')
 @jwt_required()
