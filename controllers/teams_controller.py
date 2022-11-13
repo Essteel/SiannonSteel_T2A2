@@ -37,13 +37,13 @@ def create_team():
         will be returned.
     """    
     authorize()
-    data = TeamSchema().load(request.json)
+    data = TeamSchema().load(request.json, partial=True)
     team = Team(
         name = data['name']
     )
     db.session.add(team)
     db.session.commit()
-    return TeamSchema().dump(team), 201
+    return TeamSchema(exclude=['users', 'team_matches', 'won_order', 'drawn_order', 'lost_order']).dump(team), 201
 
 # READ
 @teams_bp.route('/')
@@ -136,9 +136,6 @@ def update_one_team(id):
     team = db.session.scalar(stmt)
     if team:
         team.name = request.json.get('name') or team.name
-        team.total_won = request.json.get('total_won') or team.total_won
-        team.total_drawn = request.json.get('total_drawn') or team.total_drawn
-        team.total_lost = request.json.get('total_lost') or team.total_lost
         db.session.commit()
         return TeamSchema(exclude=['won_order', 'drawn_order', 'lost_order']).dump(team)
     else:
