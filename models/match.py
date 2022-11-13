@@ -1,3 +1,11 @@
+""" Classes for matches table
+
+Classes
+-----
+Match: object that represents the matches table.
+MatchSchema: relational schema of mapped object Match.
+"""
+
 from marshmallow import fields
 
 from init import db, ma

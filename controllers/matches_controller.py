@@ -18,7 +18,7 @@ from sqlalchemy.exc import DataError
 
 from init import db
 from models.match import Match, MatchSchema
-from controllers.auth import authorize
+from controllers.auths_controller import authorize
 
 matches_bp = Blueprint('matches', __name__, url_prefix='/matches')
 

@@ -1,3 +1,11 @@
+""" Classes for team_matches association table
+
+Classes
+-----
+TeamMatch: object that represents the team_matches table.
+TeamMatchSchema: relational schema of mapped object TeamMatch.
+"""
+
 from marshmallow import fields, validates
 from marshmallow.validate import And, Length, Range, OneOf
 from marshmallow.exceptions import ValidationError
@@ -36,6 +44,22 @@ class TeamMatchSchema(ma.Schema):
     
     @validates('match_id')
     def validate_match(self, match_id):
+        """ Checks whether two team_matches already exist
+
+        Selects all team_matches and counts how many have the same
+        match_id provided as a parameter. If there are more than two
+        team_matches with the same match_id a ValidationError is
+        raised.
+
+        Args:
+            match_id (int): primary key and unique identifier for
+            the team_match.
+
+        Raises:
+            ValidationError: Error raised if two team_matches with
+            the same match_id already exist. As only two teams go
+            against each other in a match at a time.
+        """        
         stmt = db.select(db.func.count()).select_from(TeamMatch).filter_by(match_id=match_id)
         count = db.session.scalar(stmt)
         if count > 2:

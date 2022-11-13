@@ -1,3 +1,11 @@
+""" Classes for teams table
+
+Classes
+-----
+Team: object that represents the teams table.
+TeamSchema: relational schema of mapped object Team.
+"""
+
 from marshmallow import fields
 from marshmallow.validate import Regexp
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -12,6 +20,11 @@ class Team(db.Model):
 
     @hybrid_property
     def total_won(self):
+        """ Calculates total matches won by team
+
+        Returns:
+            int: count of teams matches with the status 'won'.
+        """
         total = 0
         for team_match in self.team_matches:
             if team_match.status == 'won':
@@ -20,6 +33,11 @@ class Team(db.Model):
 
     @hybrid_property
     def total_drawn(self):
+        """ Calculates total matches drawn by team
+
+        Returns:
+            int: count of teams matches with the status 'drawn'.
+        """        
         total = 0
         for team_match in self.team_matches:
             if team_match.status == 'drawn':
@@ -28,6 +46,11 @@ class Team(db.Model):
 
     @hybrid_property
     def total_lost(self):
+        """ Calculates total matches lost by team
+
+        Returns:
+            int: count of teams matches with the status 'lost'.
+        """
         total = 0
         for team_match in self.team_matches:
             if team_match.status == 'lost':

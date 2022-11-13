@@ -18,7 +18,7 @@ from flask_jwt_extended import jwt_required
 
 from init import db
 from models.team import Team, TeamSchema
-from controllers.auth import authorize
+from controllers.auths_controller import authorize
 
 teams_bp = Blueprint('teams', __name__, url_prefix='/teams')
 

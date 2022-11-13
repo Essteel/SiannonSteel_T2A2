@@ -1,18 +1,32 @@
+""" esports api webserver project
+
+Contains the application factory for the
+esports flask application.
+
+Functions
+---------
+create_app()
+"""
+
 import os
 
 from flask import Flask
 from marshmallow.validate import ValidationError
-from sqlalchemy.exc import DataError
 
 from init import db, ma, bcrypt, jwt
-from controllers.teams import teams_bp
-from controllers.users import users_bp
-from controllers.auth import auth_bp
-from controllers.matches import matches_bp
-from controllers.team_matches import team_match_bp
-from controllers.cli_commands import db_commands
+from controllers.teams_controller import teams_bp
+from controllers.users_controller import users_bp
+from controllers.auths_controller import auth_bp
+from controllers.matches_controller import matches_bp
+from controllers.team_matches_controller import team_match_bp
+from controllers.cli_commands_controller import db_commands
 
 def create_app():
+    """ Creates and configures the application
+
+    Returns:
+        flask class: esports flask application.
+    """    
     app = Flask(__name__)
 
     @app.errorhandler(400)

@@ -18,7 +18,7 @@ from sqlalchemy.exc import IntegrityError
 
 from init import db, bcrypt
 from models.user import User, UserSchema
-from controllers.auth import authorize
+from controllers.auths_controller import authorize
 
 users_bp = Blueprint('users', __name__, url_prefix='/users')
 

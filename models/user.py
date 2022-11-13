@@ -1,3 +1,11 @@
+""" Classes for users table
+
+Classes
+-----
+User: object that represents the users table.
+UserSchema: relational schema of mapped object User.
+"""
+
 from marshmallow import fields
 from marshmallow.validate import Email, Length
 

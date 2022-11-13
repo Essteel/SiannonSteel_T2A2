@@ -17,7 +17,7 @@ from flask_jwt_extended import jwt_required
 
 from init import db
 from models.team_match import TeamMatch, TeamMatchSchema
-from controllers.auth import authorize
+from controllers.auths_controller import authorize
 
 team_match_bp = Blueprint('results', __name__, url_prefix='/results')
 
