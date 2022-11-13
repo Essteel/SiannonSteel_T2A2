@@ -28,7 +28,7 @@ matches_bp = Blueprint('matches', __name__, url_prefix='/matches')
 def create_one_match():
     """ Creation of one match
 
-    Checks ff user logged in and has administrative rights. If
+    Checks if user logged in and has administrative rights. If
     successful, match attributes provided in json format. New
     match added and committed to database.
 
@@ -36,8 +36,8 @@ def create_one_match():
         json: If the match creation is successful, all attributes
         will be returned.
 
-        json: If the user credentials are invalid then an error
-        message and a 401 HTTP status code are returned.
+        json: If the data is entered in the wrong format then a
+        error message and a 400 HTTP status code are returned.
     """
     authorize()
     try:
