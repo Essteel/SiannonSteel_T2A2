@@ -34,15 +34,27 @@ class Team(db.Model):
                 total += 1
         return total
 
+    won_order = db.Column(db.Integer, nullable=True)
+    drawn_order = db.Column(db.Integer, nullable=True)
+    lost_order = db.Column(db.Integer, nullable=True)
+
     users = db.relationship('User', back_populates='team')
     team_matches = db.relationship('TeamMatch', back_populates='team', cascade='all, delete')
 
 class TeamSchema(ma.Schema):
     id = fields.Integer(required=True)
     name = fields.String(required=True, validate=(Regexp('^[a-zA-Z0-9 ]+$', error='Only letters, numbers and spaces are valid.')))
-    
+    total_won = fields.Integer()
+    total_drawn = fields.Integer()
+    total_lost = fields.Integer()
+    won_order = fields.Integer()
+    drawn_order = fields.Integer()
+    lost_order = fields.Integer()
+
     users = fields.Nested('UserSchema', many=True, exclude=['email', 'password', 'is_admin', 'team'])
-    team_matches = fields.Nested('TeamMatchSchema', many=True, exclude=['team'])
+    team_matches = fields.Nested(lambda: 'TeamMatchSchema', many=True, exclude=['team'])
+
     class Meta:
-        fields = ('id', 'name', 'total_won', 'total_drawn', 'total_lost', 'users', 'team_matches')
+        fields = ('id', 'name', 'total_won', 'total_drawn', 'total_lost',
+        'won_order', 'drawn_order', 'lost_order', 'users', 'team_matches')
         ordered = True

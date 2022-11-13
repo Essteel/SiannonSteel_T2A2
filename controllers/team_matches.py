@@ -70,7 +70,7 @@ def get_one_result(match_id):
     if results:
         return TeamMatchSchema(many=True).dump(results)
     else:
-        return {'error': f'The match you requested with id {id} cannot be found.'}, 404
+        return {'error': f'The match you requested with id {match_id} cannot be found.'}, 404
 
 @team_match_bp.route('/')
 @jwt_required()

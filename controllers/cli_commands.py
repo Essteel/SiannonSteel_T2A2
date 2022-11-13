@@ -28,7 +28,7 @@ def create_db():
 
     Creates the 'users', 'teams', 'matches' and
     'team_matches' tables from the imported models.
-    """ 
+    """
     db.create_all()
     print('Tables created successfully.')
 

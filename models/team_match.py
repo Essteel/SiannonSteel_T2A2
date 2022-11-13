@@ -31,8 +31,8 @@ class TeamMatchSchema(ma.Schema):
     team_id = fields.Integer(required=True)
     match_id = fields.Integer(required=True)
 
-    team = fields.Nested('TeamSchema', only=['name'])
-    match = fields.Nested('MatchSchema', only=['date', 'time'])
+    team = fields.Nested(lambda: 'TeamSchema', only=['name'])
+    match = fields.Nested(lambda: 'MatchSchema', only=['date', 'time'])
     
     @validates('match_id')
     def validate_match(self, match_id):

@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
+from sqlalchemy import update
 
 from init import db
 from models.team import Team, TeamSchema
@@ -38,9 +39,16 @@ def get_one_team(id):
 
 @teams_bp.route('/leaderboard/')
 def get_leaderboard():
-    stmt = db.select(Team).order_by(Team.total_won.desc(), Team.total_drawn.desc(), Team.total_lost.desc())
+    stmt = db.select(Team)
+    _teams = db.session.scalars(stmt)
+    for team in _teams:
+        team.won_order = team.total_won
+        team.drawn_order = team.total_drawn
+        team.lost_order = team.total_lost
+
+    stmt = db.select(Team).order_by(Team.won_order.desc(), Team.drawn_order.desc(), Team.lost_order.desc())
     teams = db.session.scalars(stmt)
-    return TeamSchema(many=True, exclude=['users']).dump(teams)
+    return TeamSchema(many=True, exclude=['users', 'team_matches', 'won_order', 'drawn_order', 'lost_order']).dump(teams)
 
 # UPDATE
 @teams_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
