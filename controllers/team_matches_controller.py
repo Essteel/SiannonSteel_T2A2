@@ -42,7 +42,9 @@ def create_one_result():
     data = TeamMatchSchema().load(request.json, partial=True)
     result = TeamMatch(
         team_id = data['team_id'],
-        match_id = data['match_id']
+        match_id = data['match_id'],
+        score = data['score'],
+        status = data['status']
     )
     db.session.add(result)
     db.session.commit()

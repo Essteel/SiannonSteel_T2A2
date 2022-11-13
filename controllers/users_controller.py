@@ -23,7 +23,7 @@ from controllers.auths_controller import authorize
 users_bp = Blueprint('users', __name__, url_prefix='/users')
 
 # CREATE
-@users_bp.route('/', methods=['POST'])
+@users_bp.route('/register/', methods=['POST'])
 def create_one_user():
     """ Creation of one user
 
