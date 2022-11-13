@@ -41,8 +41,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: None
 - HTTP response code: 200
 - Request body:
+
   <img width="777" alt="route_auth_login_request_body" src="https://user-images.githubusercontent.com/110761232/201519791-95286a40-235a-401d-8d2c-729d22911dbb.png">
 - Response body:
+
   <img width="777" alt="route_auth_login_response_body" src="https://user-images.githubusercontent.com/110761232/201519762-10034175-445d-4aec-952d-0b1579a99ad4.png">
 
 ### Create a match
@@ -56,8 +58,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: headers Authorization: Bearer {token}
 - HTTP response code: 201
 - Request body: 
+
   ![route_match_create_request_body](https://user-images.githubusercontent.com/110761232/201519759-3967fd7a-d96d-424a-b889-b337058e5c76.png)
 - Response body:
+
   ![route_match_create_response_body](https://user-images.githubusercontent.com/110761232/201519751-e027d234-c505-4b1d-90c4-5da1fdcce948.png)
 
 ### Get a match
@@ -72,6 +76,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_match_get_one_response_body](https://user-images.githubusercontent.com/110761232/201519748-16502b5a-f12a-46a8-8b50-ea86d223539e.png)
 
 ### Get all matches
@@ -86,6 +91,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_match_get_all_response_body](https://user-images.githubusercontent.com/110761232/201519769-37d1492b-ad27-4016-b968-9a3ceccb31b7.png)
 
 ### Update a match
@@ -99,8 +105,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: headers Authorization: Bearer {token}
 - HTTP response code: 200
 - Request body:
+
   ![route_match_update_request_body](https://user-images.githubusercontent.com/110761232/201519781-0b024af2-a692-4698-b9a4-7e80058fbc2a.png)
 - Response body:
+
   ![route_match_update_response_body](https://user-images.githubusercontent.com/110761232/201519796-acc6381a-277c-4665-86da-cfc7a8509b7e.png)
 
 ### Delete a match
@@ -115,6 +123,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_match_delete_response_body](https://user-images.githubusercontent.com/110761232/201519806-2858fba9-05dc-4200-b7a8-3f6794cb0c8b.png)
 
 ### Create a team
@@ -128,8 +137,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: headers Authorization: Bearer {token}
 - HTTP response code: 201
 - Request body:
+
   ![route_team_create_request_body](https://user-images.githubusercontent.com/110761232/201519774-2b9c6fcd-bed1-4122-92d3-9294f3cb8e32.png)
 - Response body:
+
   ![route_team_create_response_body](https://user-images.githubusercontent.com/110761232/201519757-a6714323-07f0-4521-8d65-1d8ddd011eb0.png)
 
 ### Get a team
@@ -144,6 +155,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_team_get_one_response_body](https://user-images.githubusercontent.com/110761232/201519755-521a49c5-257f-4d6f-9106-6128c08acfca.png)
 
 ### Get all teams
@@ -158,6 +170,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_team_get_all_response_body](https://user-images.githubusercontent.com/110761232/201519778-58000bf1-93cf-4542-ac92-8e29c2f219ba.png)
 
 ### Get leaderboard
@@ -172,6 +185,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_team_leaderboard_response_body](https://user-images.githubusercontent.com/110761232/201519818-929c2bdc-8fe9-461d-8f9d-1b3d891e5f66.png)
 
 ### Update a team
@@ -185,8 +199,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: headers Authorization: Bearer {token}
 - HTTP response code: 200
 - Request body:
+
   ![route_team_update_request_body](https://user-images.githubusercontent.com/110761232/201519749-1b4149ea-5b34-49d8-b9ac-256bb0e27037.png)
 - Response body:
+
   ![route_team_update_response_body](https://user-images.githubusercontent.com/110761232/201519802-5effab93-59ca-4418-b6d3-1bfbc2117ff1.png)
 
 ### Delete a team
@@ -201,6 +217,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_team_delete_response_body](https://user-images.githubusercontent.com/110761232/201519788-a3539931-6f7c-40c2-96cf-5d2e7d6bfa70.png)
 
 ### Create a result
@@ -214,8 +231,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: headers Authorization: Bearer {token}
 - HTTP response code: 201
 - Request body:
+
   ![route_result_create_request_body](https://user-images.githubusercontent.com/110761232/201519752-9ed44155-e8a3-4cb9-bfeb-bada3e5c3a79.png)
 - Response body:
+
   ![route_result_create_response_body](https://user-images.githubusercontent.com/110761232/201519767-c4fd71eb-dde6-4b8b-8faf-50e8e4a55889.png)
 
 ### Get a result
@@ -230,6 +249,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_result_get_one_response_body](https://user-images.githubusercontent.com/110761232/201519753-1bc58d26-9c53-4220-808e-be37cb3f7b15.png)
 
 ### Get all results
@@ -244,6 +264,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_result_get_all_response_body](https://user-images.githubusercontent.com/110761232/201519777-e5d08acd-8af0-4652-9e80-0ee2e8115e5f.png)
 
 ### Update a result
@@ -257,8 +278,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: headers Authorization: Bearer {token}
 - HTTP response code: 200
 - Request body:
+
   ![route_result_update_request_body](https://user-images.githubusercontent.com/110761232/201519775-aafafe90-233e-4e0a-b839-91d57020a4a4.png)
 - Response body:
+
   ![route_result_update_response_body](https://user-images.githubusercontent.com/110761232/201519809-130bcefd-43b2-46e1-abb3-065dfc591984.png)
 
 ### Delete a result
@@ -273,6 +296,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_result_delete_response_body](https://user-images.githubusercontent.com/110761232/201519795-eea604b5-f57f-40fc-9106-3401f3b3cc2e.png)
 
 ### Create a user
@@ -286,8 +310,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: None
 - HTTP response code: 201
 - Request body:
+
   ![route_user_create_request_body](https://user-images.githubusercontent.com/110761232/201519821-8dca52fb-2730-4b4c-b22c-b34d98edf155.png)
 - Response body:
+
   ![route_user_create_response_body](https://user-images.githubusercontent.com/110761232/201519744-68b04159-b60d-477d-8938-f346b7526c06.png)
 
 ### Get a user
@@ -302,6 +328,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_user_get_one_response_body](https://user-images.githubusercontent.com/110761232/201519790-3531b14a-ea80-4876-aacd-3df3383ef632.png)
 
 ### Get all users
@@ -316,6 +343,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_user_get_all_response_body](https://user-images.githubusercontent.com/110761232/201519811-008afe21-babc-4482-8082-4b344d00b30f.png)
 
 ### Update a user
@@ -329,8 +357,10 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: headers Authorization: Bearer {token}
 - HTTP response code: 200
 - Request body:
+
   ![route_user_update_request_body](https://user-images.githubusercontent.com/110761232/201519810-b81b0443-064b-4926-a32b-c680f4c5584a.png)
 - Response body:
+
   ![route_user_update_response_body](https://user-images.githubusercontent.com/110761232/201519793-cd67d464-0d8f-4ed4-b994-545327995689.png)
 
 ### Delete a user
@@ -345,6 +375,7 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body: None
 - Response body:
+
   ![route_user_delete_response_body](https://user-images.githubusercontent.com/110761232/201519800-adbf8feb-ad3d-4ab8-9ae8-38fe46c4cecb.png)
 
 ## R6
