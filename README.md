@@ -41,9 +41,9 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Authorization: None
 - HTTP response code: 200
 - Request body:
-  ![](docs/route_auth_login_request_body.png)
+  <img width="777" alt="route_auth_login_request_body" src="https://user-images.githubusercontent.com/110761232/201519791-95286a40-235a-401d-8d2c-729d22911dbb.png">
 - Response body:
-  ![](docs/route_auth_login_response_body.png)
+  <img width="777" alt="route_auth_login_response_body" src="https://user-images.githubusercontent.com/110761232/201519762-10034175-445d-4aec-952d-0b1579a99ad4.png">
 
 ### Create a match
 
@@ -57,7 +57,6 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 201
 - Request body: 
   ![route_match_create_request_body](https://user-images.githubusercontent.com/110761232/201519759-3967fd7a-d96d-424a-b889-b337058e5c76.png)
-<img width="777" alt="route_auth_login_response_body" src="https://user-images.githubusercontent.com/110761232/201519762-10034175-445d-4aec-952d-0b1579a99ad4.png">
 - Response body:
   ![route_match_create_response_body](https://user-images.githubusercontent.com/110761232/201519751-e027d234-c505-4b1d-90c4-5da1fdcce948.png)
 
@@ -101,10 +100,8 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body:
   ![route_match_update_request_body](https://user-images.githubusercontent.com/110761232/201519781-0b024af2-a692-4698-b9a4-7e80058fbc2a.png)
-<img width="1129" alt="4_Trello_in_progress" src="https://user-images.githubusercontent.com/110761232/201519783-1e6d9db0-2a84-4d56-9843-7337b46edbe1.png">
 - Response body:
   ![route_match_update_response_body](https://user-images.githubusercontent.com/110761232/201519796-acc6381a-277c-4665-86da-cfc7a8509b7e.png)
-<img width="777" alt="team_matches_table" src="https://user-images.githubusercontent.com/110761232/201519798-7e2b236c-cda6-4047-8129-ea84dc25ae42.png">
 
 ### Delete a match
 
@@ -191,7 +188,6 @@ Using SQL directly also increases the risk of making the database vulnerable to 
   ![route_team_update_request_body](https://user-images.githubusercontent.com/110761232/201519749-1b4149ea-5b34-49d8-b9ac-256bb0e27037.png)
 - Response body:
   ![route_team_update_response_body](https://user-images.githubusercontent.com/110761232/201519802-5effab93-59ca-4418-b6d3-1bfbc2117ff1.png)
-<img width="886" alt="teams_table" src="https://user-images.githubusercontent.com/110761232/201519804-219b8f13-afed-4a09-9e8e-b051c60972c5.png">
 
 ### Delete a team
 
@@ -262,7 +258,6 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - HTTP response code: 200
 - Request body:
   ![route_result_update_request_body](https://user-images.githubusercontent.com/110761232/201519775-aafafe90-233e-4e0a-b839-91d57020a4a4.png)
-<img width="886" alt="matches_table" src="https://user-images.githubusercontent.com/110761232/201519776-d1c25048-e664-477c-b225-d56d4a46623a.png">
 - Response body:
   ![route_result_update_response_body](https://user-images.githubusercontent.com/110761232/201519809-130bcefd-43b2-46e1-abb3-065dfc591984.png)
 
@@ -279,7 +274,6 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Request body: None
 - Response body:
   ![route_result_delete_response_body](https://user-images.githubusercontent.com/110761232/201519795-eea604b5-f57f-40fc-9106-3401f3b3cc2e.png)
----
 
 ### Create a user
 
@@ -309,7 +303,6 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Request body: None
 - Response body:
   ![route_user_get_one_response_body](https://user-images.githubusercontent.com/110761232/201519790-3531b14a-ea80-4876-aacd-3df3383ef632.png)
-<img width="777" alt="route_auth_login_request_body" src="https://user-images.githubusercontent.com/110761232/201519791-95286a40-235a-401d-8d2c-729d22911dbb.png">
 
 ### Get all users
 
@@ -324,7 +317,6 @@ Using SQL directly also increases the risk of making the database vulnerable to 
 - Request body: None
 - Response body:
   ![route_user_get_all_response_body](https://user-images.githubusercontent.com/110761232/201519811-008afe21-babc-4482-8082-4b344d00b30f.png)
-<img width="777" alt="users_table" src="https://user-images.githubusercontent.com/110761232/201519814-07dfb3ce-2382-41a8-84ee-b3d8613c7be7.png">
 
 ### Update a user
 
@@ -475,7 +467,7 @@ Represents player users and admin users. The users entity has the following attr
 
 Each user may belong to zero or one team, and each team will have zero or many players - a optional one to optional many relationship. This relation is formed by the presence of the foreign key constraint 'team_id' which references the primary key 'id' column within the teams table. The presence of a value in the 'team_id' column is optional as administrative users would not belong to a team.
 
-![](users_table.png)
+<img width="777" alt="users_table" src="https://user-images.githubusercontent.com/110761232/201519814-07dfb3ce-2382-41a8-84ee-b3d8613c7be7.png">
 
 ### team_matches
 
@@ -485,7 +477,7 @@ Each team match will correspond to one and only one team and each team will have
 
 Each team match will correspond to one and only one match but each match will have zero or many team matches - a mandatory one to optional many relationship. This relation is formed by the presence of the foreign key constraint 'match_id' which references the primary key 'id' column within the matches table. The presence of a value in the 'match_id' column is mandatory as a team match requires the match time and date to be known before its creation.
 
-![](team_matches_table.png)
+<img width="777" alt="team_matches_table" src="https://user-images.githubusercontent.com/110761232/201519798-7e2b236c-cda6-4047-8129-ea84dc25ae42.png">
 
 ### teams
 
@@ -495,7 +487,7 @@ Each team will have zero or many users as its team members and each user may bel
 
 Each team will have zero or many team matches and each team match will relate to one and only one team - a optional many to mandatory one relationship. This relation is formed by the referencing of the teams primary key 'id' column as the 'team_id' foreign key constraint within the team_matches table.
 
-![](teams_table.png)
+<img width="886" alt="teams_table" src="https://user-images.githubusercontent.com/110761232/201519804-219b8f13-afed-4a09-9e8e-b051c60972c5.png">
 
 ### matches
 
@@ -503,7 +495,7 @@ Represents the timings for matches that have taken place or will take place in t
 
 Each match will relate to zero or many teams and each team match will relate to one and only one match - an optional many to mandatory one relationship. This relation is formed by the referencing of the matches primary key 'id' column as the 'match_id' foreign key constraint within the team_matches table.
 
-![](matches_table.png)
+<img width="886" alt="matches_table" src="https://user-images.githubusercontent.com/110761232/201519776-d1c25048-e664-477c-b225-d56d4a46623a.png">
 
 ## R10
 
@@ -513,7 +505,7 @@ I undertook an agile approach to manage tasks within the project aided by the us
 
 Cards were also created to represent each area required for the documentation of the project. Each of these also had an associated checklist of tasks to complete in order to satisfy that element of the documentation. Each Card was given a priority label and a rough date for completion based on its complexity and when it would be ideal to have it finished. They were also given different covers to differentiate easily between tasks related to coding or documentation.
 
-![Whole Trello board in progress](4_Trello_in_progress.png)
+<img width="1129" alt="4_Trello_in_progress" src="https://user-images.githubusercontent.com/110761232/201519783-1e6d9db0-2a84-4d56-9843-7337b46edbe1.png">
 
 As the period for the completion of the project was approximately 2 weeks sprints were completed every two days. Each morning the tasks for completion were reviewed on the Trello board to establish progress and any blockers. Then at the end of the sprint the Trello board was updated with any tasks started or completed moved to the appropriate column. Any features completed within the sprint were manually tested to make sure they worked as expected.
 
